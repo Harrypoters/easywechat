@@ -99,9 +99,51 @@ class IndexController extends BaseController {
         $app = new Application($config);
 
         $openId = 'orpK-1epV3_mA2gYEZBvXYxINv94';
-        $userService = $app->user;
-        $userService->get($openId);
+        //用户详细信息
+//        $userService = $app->user;
+//        $userService->get($openId);
+
+        //用户分组
+        $group = $app->user_group;
+        //创建分组
+        $group->create('好朋友');
+        $group->delete('102'); //分组的id
 //        dd($userService->get($openId));
-        dd($userService->lists());
+//        dd($userService->lists());
+        dd($group->lists());
+    }
+
+    //网页授权
+    public function oauth()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+        $oauth = $app->oauth;
+// 未登录
+        if (session()->has('wechat_user')) {
+//            $_SESSION['target_url'] = 'user/profile';
+            session(['target_url' => 'user/profile']);
+            return $oauth->redirect();
+            // 这里不一定是return，如果你的框架action不是返回内容的话你就得使用
+            // $oauth->redirect()->send();
+        }
+// 已经登录过
+//        $user = $_SESSION['wechat_user'];
+        $user = session('wechat_user');
+        dd(session('wechat_user'));
+    }
+    public function oauthCallback()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+        $oauth = $app->oauth;
+// 获取 OAuth 授权结果用户信息
+        $user = $oauth->user();
+//        $_SESSION['wechat_user'] = $user->toArray();
+        session(['wechat_user'=> $user->toArray()]);
+//        $targetUrl = empty($_SESSION['target_url']) ? '/' : $_SESSION['target_url'];
+        $targetUrl = session()->has('target_url') ? '/' : session('target_url');
+        dd('target_url');
+//        header('location:'. $targetUrl); // 跳转到 user/profile
     }
 }
