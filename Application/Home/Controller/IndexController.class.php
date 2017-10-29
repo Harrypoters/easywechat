@@ -89,6 +89,7 @@ class IndexController extends BaseController {
                 "remark" => "欢迎再次购买！",
             ],
         ]);
+        dd($messageId);
     }
 
     //用户信息
