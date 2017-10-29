@@ -1,6 +1,8 @@
 <?php
 return array(
+    'LOAD_EXT_CONFIG' => 'easyWeChat',
 
+    'SESSION_AUTO_START' => false,
 //    'LOAD_EXT_CONFIG' => 'easyWeChat',
 
     'DB_TYPE' => 'mysql',
