@@ -3,6 +3,7 @@
 namespace Home\Controller;
 
 use Common\Common\Controller\BaseController;
+use Composer\Config;
 use EasyWeChat\Foundation\Application;
 use EasyWeChat\Message\News;
 use Think\Log;
@@ -56,5 +57,50 @@ class IndexController extends BaseController {
         $response = $server->serve();
 //        return $response;
         $response->send(); // Laravel 里请使用：return $response;
+    }
+
+    //群发
+    public function weiXinBroadcast()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+
+        $broadcast = $app->broadcast;
+        $broadcast->sendText("大家好！欢迎使用 EasyWeChat。");
+        die('群发成功');
+    }
+
+    //模板消息
+    public function wxNotic()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+
+        $notice = $app->notice;
+
+        $messageId = $notice->send([
+            'touser' => 'orpK-1epV3_mA2gYEZBvXYxINv94', //user_openid
+            'template_id' => 'rNJUkEWGlJhRQYSYBngugiHCXDel15njrtlJ6CDVFtc',
+            'url' => 'www.baidu.com',
+            'data' => [
+                "first"  => "恭喜你购买成功！",
+                "name"   => "巧克力",
+                "price"  => "39.8元",
+                "remark" => "欢迎再次购买！",
+            ],
+        ]);
+    }
+
+    //用户信息
+    public function wxUser()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+
+        $openId = 'orpK-1epV3_mA2gYEZBvXYxINv94';
+        $userService = $app->user;
+        $userService->get($openId);
+//        dd($userService->get($openId));
+        dd($userService->lists());
     }
 }
