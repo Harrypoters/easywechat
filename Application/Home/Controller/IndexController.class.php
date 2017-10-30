@@ -165,7 +165,7 @@ class IndexController extends BaseController {
         $result = $material->get($media_id);
 
         //获取图片素材
-        $result = $material->lists('image', 0, 10);
+//        $result = $material->lists('image', 0, 10);
 
         file_put_contents($_SERVER['HTTP_HOST'].'/easywechat/Public/img/adc.png', $result);
         var_dump($result);
