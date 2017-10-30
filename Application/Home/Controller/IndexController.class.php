@@ -181,5 +181,6 @@ class IndexController extends BaseController {
         // 菜单
         $menu = $app->menu;
         $menus = $menu->all();
+        var_dump($menus);
     }
 }
