@@ -150,7 +150,7 @@ class IndexController extends BaseController {
     //素材管理
     public function material()
     {
-        var_dump($_SERVER['HTTP_HOST'].'/easywechat/Public/img/11.png');exit();
+//        var_dump($_SERVER['HTTP_HOST'].'/easywechat/Public/img/11.png');exit();
         $config = C('easyWeChat');
         $app = new Application($config);
 
@@ -167,7 +167,7 @@ class IndexController extends BaseController {
         //获取图片素材
         $result = $material->lists('image', 0, 10);
 
-        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/easywechat/Public/img/adc.png', $result);
+        file_put_contents($_SERVER['HTTP_HOST'].'/easywechat/Public/img/adc.png', $result);
         var_dump($result);
 
     }
