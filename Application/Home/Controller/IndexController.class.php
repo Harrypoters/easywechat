@@ -146,4 +146,17 @@ class IndexController extends BaseController {
         dd('target_url');
 //        header('location:'. $targetUrl); // 跳转到 user/profile
     }
+
+    //素材管理
+    public function material()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+
+        $openId = 'orpK-1epV3_mA2gYEZBvXYxINv94';
+        // 永久素材
+        $material = $app->material;
+
+        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');
+    }
 }
