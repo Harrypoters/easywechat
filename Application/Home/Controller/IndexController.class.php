@@ -171,4 +171,15 @@ class IndexController extends BaseController {
         var_dump($result);
 
     }
+
+    //菜单
+    public function menu()
+    {
+        $config = C('easyWeChat');
+        $app = new Application($config);
+
+        // 菜单
+        $menu = $app->menu;
+        $menus = $menu->all();
+    }
 }
