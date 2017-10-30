@@ -157,6 +157,7 @@ class IndexController extends BaseController {
         // 永久素材
         $material = $app->material;
 
-        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');
+        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');//绝对路径
+        var_dump($result);
     }
 }
