@@ -157,8 +157,14 @@ class IndexController extends BaseController {
         $openId = 'orpK-1epV3_mA2gYEZBvXYxINv94';
         // 永久素材
         $material = $app->material;
+        //上传图片
+//        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/Public/img/11.png');//绝对路径
 
-        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/Public/img/11.png');//绝对路径
+        //获得图片
+        $media_id = 'yvcYU_r9DxbcIgKqqceoDEVbwmK32gI6sUDOPoBZL5U';
+        $result = $material->get($media_id);
+        file_put_contents($_SERVER['DOCUMENT_ROOT'].'/easywechat/Public/img/adc.png', $result);
         var_dump($result);
+
     }
 }
