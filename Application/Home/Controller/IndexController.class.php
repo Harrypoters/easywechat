@@ -150,7 +150,7 @@ class IndexController extends BaseController {
     //素材管理
     public function material()
     {
-        var_dump($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');exit();
+//        var_dump($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');exit();
         $config = C('easyWeChat');
         $app = new Application($config);
 
@@ -158,7 +158,7 @@ class IndexController extends BaseController {
         // 永久素材
         $material = $app->material;
 
-        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');//绝对路径
+        $result = $material->uploadImage($_SERVER['DOCUMENT_ROOT'].'/easywechat/Public/img/11.png');//绝对路径
         var_dump($result);
     }
 }
