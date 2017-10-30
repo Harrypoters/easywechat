@@ -150,6 +150,7 @@ class IndexController extends BaseController {
     //素材管理
     public function material()
     {
+        var_dump($_SERVER['DOCUMENT_ROOT'].'/easywechat/img/11.png');exit();
         $config = C('easyWeChat');
         $app = new Application($config);
 
